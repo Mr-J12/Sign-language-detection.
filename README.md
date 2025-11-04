@@ -80,20 +80,20 @@ Notes:
 
 ```powershell
 python -m venv .venv
-.\\.venv\\Scripts\\activate
+.\.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
 2. To train the static model:
 
 ```powershell
-python train_model\\train_static_model.py
+python train_model\train_static_model.py
 ```
 
 3. To train the dynamic model:
 
 ```powershell
-python train_model\\train_dynamic_model.py
+python train_model\train_dynamic_model.py
 ```
 
 4. To process raw dynamic video data (landmark extraction):

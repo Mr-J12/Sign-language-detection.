@@ -8,6 +8,25 @@ This project supports two related tasks:
 - Static classification: recognize ASL alphabet letters (A-Z, del, nothing, space) from images.
 - Dynamic recognition: recognize selected ASL words from short video sequences using hand landmarks extracted with MediaPipe.
 
+## Dataset
+
+Details about the datasets used in this project (paths are relative to the repository root):
+
+- Static (image) dataset
+	- Location (local copy used here): `data/static/train/` (also a `data/static/test/` and `data/static/val/` may be present depending on your split).
+	- Number of classes: 29 (A-Z plus `del`, `nothing`, `space`).
+	- Example class size: class `A` contains 8,458 images (see `data/static/train/A/`).
+	- Total images (train folder): 223,103 files under `data/static/train/` at the time of packaging.
+	- Notes: images were resized to 128×128 and augmented for training (rotation, zoom, brightness). Class sizes are imbalanced; training used class-aware sampling / augmentation to reduce imbalance effects.
+
+- Dynamic (video / landmark) dataset
+	- Location (processed landmarks): `data/dynamic/processed_landmarks/` — each word has its own folder containing per-sample landmark sequences saved as .npy.
+	- Number of target words (classes) in processed landmarks: 5 (examples present: `before`, `book`, `drink`, `go`, `who`).
+	- Raw videos (if present): `data/dynamic/raw_videos/` — raw recordings used to produce landmark .npy files via `process_dynamic_data.py`.
+	- Notes: landmarks were extracted using MediaPipe Hands and sequences were standardized/padded to 30 frames (resulting per-sample shape: (30, 126)).
+
+If you want exact counts per-class for dynamic landmarks (number of .npy files per word) I can enumerate them and add a small table here.
+
 ## Assets
 
 The repository contains visual assets summarizing training and evaluation results. These are referenced below and embedded where helpful.
